@@ -11,7 +11,6 @@ void execmd(char **argv, char *argv_0)
 
     pid = fork();
     if (pid == 0) {
-        // This block will be run by the child process
         if (execve(argv[0], argv, NULL) == -1) {
             _printf(argv_0);
             _printf(": No such file or directory\n");
