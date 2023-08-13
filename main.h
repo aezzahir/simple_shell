@@ -13,5 +13,6 @@
 void prompt();
 int _printf(const char *str);
 void execmd(char **argv);
+char *_strcpy(char *dest, char *src);
 
 #endif /* _MAIN_H */

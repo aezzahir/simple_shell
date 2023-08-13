@@ -38,7 +38,7 @@ int main(int ac, char **argv)
             return (-1);
         }
         /* copy lineptr to lineptr_copy */
-        strcpy(line_copy, line);
+        _strcpy(line_copy, line);
 
         /* execute the command */
         argv = malloc(sizeof(char *) * 100);
