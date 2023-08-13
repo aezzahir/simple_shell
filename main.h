@@ -14,5 +14,7 @@ void prompt();
 int _printf(const char *str);
 void execmd(char **argv, char *argv_0);
 char *_strcpy(char *dest, char *src);
+char *_strcat(char *dest, char *src);
+int _strlen(char *s);
 
 #endif /* _MAIN_H */
