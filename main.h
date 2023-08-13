@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 /* Utilities functions */
 int _printf(const char *str);
