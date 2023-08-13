@@ -1,19 +1,19 @@
 #include "main.h"
 
-void execmd(char **argv){
-    char *line = NULL;
+void execmd(char **argv) 
+{
+    char *command = NULL;
 
-    if (argv){
-        /* get the command */
-        line = argv[0];
+    if (argv && argv[0]) {
+        /* Get the command */
+        command = argv[0];
 
-        /* generate the path to this command before passing it to execve */
-
-        /* execute the actual command with execve */
-        if (execve(line, argv, NULL) == -1){
-            _printf(line);
-            _printf(": 1: qwerty: not found");
+        /* Execute the actual command with execve */
+        if (execve(command, argv, NULL) == -1) {
+            // Print an error message if execve fails
+            _printf(command);
+            _printf(": 1: qwerty: not found\n");
+            perror("Error");
         }
     }
-
 }

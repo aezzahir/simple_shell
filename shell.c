@@ -17,7 +17,6 @@ int main(int ac, char **argv)
     ssize_t linelen;
 
     (void)ac;
-    (void)argv;
 
     while (1)
     {
@@ -32,8 +31,19 @@ int main(int ac, char **argv)
             return (-1);
         }
 
+        /* allocate space for a copy of the lineptr */
+        line_copy = malloc(sizeof(char) * linelen);
+        if (line_copy== NULL){
+            perror("tsh: memory allocation error");
+            return (-1);
+        }
+        /* copy lineptr to lineptr_copy */
+        strcpy(line_copy, line);
+
         /* execute the command */
-        /*execmd(line);*/
+        argv = malloc(sizeof(char *) * 100);
+        argv[0] = line;
+        execmd(argv);
     }
      /* free up allocated memory */ 
     free(line);
