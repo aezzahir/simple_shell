@@ -3,16 +3,18 @@
 char *get_path(char *command)
 {
     char *path, *path_copy, *path_token, *file_path;
-    int command_length, directory_length;
+    int command_length, directory_length, path_length;
     struct stat buffer;
 
     path = getenv("PATH");
 
     if (path){
         /* Duplicate the path string -> remember to free up memory for this because strdup allocates memory that needs to be freed*/ 
-        path_copy = strdup(path);
+        path_length = _strlen(path);
+        path_copy = malloc(sizeof(char) * path_length);
+        _strcpy(path_copy, path);
         /* Get length of the command that was passed */
-        command_length = strlen(command);
+        command_length = _strlen(command);
 
         /* Let's break down the path variable and get all the directories available*/
         path_token = strtok(path_copy, ":");
@@ -23,10 +25,10 @@ char *get_path(char *command)
             /* allocate memory for storing the command name together with the directory name */
             file_path = malloc(command_length + directory_length + 2); /* NB: we added 2 for the slash and null character we will introduce in the full command */
             /* to build the path for the command, let's copy the directory path and concatenate the command to it */
-            strcpy(file_path, path_token);
-            strcat(file_path, "/");
-            strcat(file_path, command);
-            strcat(file_path, "\0");
+            _strcpy(file_path, path_token);
+            _strcat(file_path, "/");
+            _strcat(file_path, command);
+            _strcat(file_path, "\0");
 
             /* let's test if this file path actually exists and return it if it does, otherwise try the next directory */
             if (stat(file_path, &buffer) == 0){
