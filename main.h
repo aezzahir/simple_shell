@@ -18,7 +18,7 @@ int _strlen(char *s);
 /* Shell functions */
 void prompt(void);
 void execmd(char **argv, char *argv_0);
-char *get_path(const char *command);
+char *get_path(char *command);
 
 
 #endif /* _MAIN_H */

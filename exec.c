@@ -2,16 +2,20 @@
 
 void execmd(char **argv, char *argv_0) 
 {
+    char *command = NULL, *full_command = NULL;
     pid_t pid, wpid;
     int status;
 
     if (!argv || !argv[0]) {
         return;
     }
-
+    /* get the command */
+    command = argv[0];
+    /* generate the path to this command before passing it to execve */
+    full_command = get_path(command);
     pid = fork();
     if (pid == 0) {
-        if (execve(argv[0], argv, NULL) == -1) {
+        if (execve(full_command, argv, NULL) == -1) {
             _printf(argv_0);
             _printf(": No such file or directory\n");
             exit(EXIT_FAILURE);  // Make sure the child process terminates
