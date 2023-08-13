@@ -12,7 +12,7 @@
 
 void prompt();
 int _printf(const char *str);
-void execmd(char **argv);
+void execmd(char **argv, char *argv_0);
 char *_strcpy(char *dest, char *src);
 
 #endif /* _MAIN_H */
