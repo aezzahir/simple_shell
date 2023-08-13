@@ -1,0 +1,43 @@
+#include "main.h"
+
+#define BUFFER_SIZE 1024
+
+/**
+ * main - main function
+ * @ac: Arguments Number
+ * @argv: Arguments Vector
+ * Return: 0 if success
+*/
+
+int main(int ac, char **argv)
+{
+
+    char *line = NULL, *line_copy = NULL;
+    size_t linecap = 0;
+    ssize_t linelen;
+
+    (void)ac;
+    (void)argv;
+
+    while (1)
+    {
+        prompt();
+
+        linelen =  getline(&line, &linecap, stdin);
+
+        /* check if the getline function failed or reached EOF or user use CTRL + D */ 
+        if (linelen == -1)
+        {
+            _printf("\n");
+            return (-1);
+        }
+
+        /* execute the command */
+        /*execmd(line);*/
+    }
+     /* free up allocated memory */ 
+    free(line);
+    free(line_copy);
+
+    
+}
