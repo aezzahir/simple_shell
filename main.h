@@ -12,5 +12,6 @@
 
 void prompt();
 int _printf(const char *str);
+void execmd(char **argv);
 
 #endif /* _MAIN_H */
