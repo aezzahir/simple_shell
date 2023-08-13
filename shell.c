@@ -13,9 +13,10 @@ int main(int ac, char **argv)
 {
 
     char *line = NULL, *line_copy = NULL, argv_0[100];
+    char **tokens = NULL;
     size_t linecap = 0;
     ssize_t linelen;
-     const char *delim = " \n";
+    const char *delim = " \n";
     int number_of_tokens = 0;
     char *a_token;
     int i;
@@ -25,58 +26,72 @@ int main(int ac, char **argv)
     _strcpy(argv_0, argv[0]);
 
 
+    /* ... Your other code ... */
+
     while (1)
     {
         prompt();
 
-        linelen =  getline(&line, &linecap, stdin);
-
-        /* check if the getline function failed or reached EOF or user use CTRL + D */ 
+        linelen = getline(&line, &linecap, stdin);
         if (linelen == -1)
         {
             _printf("\n");
             return (-1);
         }
-        /* allocate space for a copy of the lineptr */
+
         line_copy = malloc(sizeof(char) * linelen);
-        if (line_copy== NULL)
+        if (!line_copy)
         {
             perror("tsh: memory allocation error");
             return (-1);
         }
-        /* copy lineptr to lineptr_copy */
         _strcpy(line_copy, line);
 
-        /********** split the string (lineptr) into an array of words ********/
-        /* calculate the total number of tokens */
+        /* split the string (line) into an array of words */
+        number_of_tokens = 0;
         a_token = strtok(line, delim);
-
-        while (a_token != NULL){
+        while (a_token != NULL)
+        {
             number_of_tokens++;
             a_token = strtok(NULL, delim);
         }
         number_of_tokens++;
 
-        /* Allocate space to hold the array of strings */
-        argv = malloc(sizeof(char *) * number_of_tokens);
+        tokens = malloc(sizeof(char *) * number_of_tokens);
+        if (!tokens)
+        {
+            perror("tsh: memory allocation error");
+            free(line_copy);
+            return (-1);
+        }
 
-        /* Store each token in the argv array */
         a_token = strtok(line_copy, delim);
-
-        for (i = 0; a_token != NULL; i++){
-            argv[i] = malloc(sizeof(char) * strlen(a_token));
-            _strcpy(argv[i], a_token);
-
+        for (i = 0; a_token != NULL; i++)
+        {
+            tokens[i] = malloc(sizeof(char) * (strlen(a_token) + 1)); // +1 for '\0'
+            _strcpy(tokens[i], a_token);
             a_token = strtok(NULL, delim);
         }
-        argv[i] = NULL;
+        tokens[i] = NULL;
 
-        /* execute the command */
-        execmd(argv, argv_0);
+        /* Check if the first command is "exit" */
+        if (tokens[0] && strcmp(tokens[0], "exit") == 0)
+        {
+            free(line);
+            free(line_copy);
+            for (i = 0; tokens[i]; i++)
+                free(tokens[i]);
+            free(tokens);
+            return (0);
+        }
+
+        execmd(tokens, argv_0);
+
+        /* Free the tokens and line_copy */
+        for (i = 0; tokens[i]; i++)
+            free(tokens[i]);
     }
-     /* free up allocated memory */ 
-    free(line);
+    free(tokens);
     free(line_copy);
-
-    
+    free(line);
 }
