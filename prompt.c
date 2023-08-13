@@ -7,7 +7,7 @@
  * Return: 0 if success
 */
 
-void prompt()
+void prompt(void)
 {
     char *prompt = "#cisfun$ ";
 

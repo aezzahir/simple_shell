@@ -9,12 +9,16 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-
-void prompt();
+/* Utilities functions */
 int _printf(const char *str);
-void execmd(char **argv, char *argv_0);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 int _strlen(char *s);
+
+/* Shell functions */
+void prompt(void);
+void execmd(char **argv, char *argv_0);
+char *get_path(const char *command);
+
 
 #endif /* _MAIN_H */
