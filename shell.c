@@ -75,14 +75,10 @@ int main(int ac, char **argv)
         tokens[i] = NULL;
 
         /* Check if the first command is "exit" */
-        if (tokens[0] && strcmp(tokens[0], "exit") == 0)
-        {
-            free(line);
-            free(line_copy);
-            for (i = 0; tokens[i]; i++)
-                free(tokens[i]);
-            free(tokens);
-            return (0);
+        if (tokens[0] && strcmp(tokens[0], "exit") == 0) {
+            int exit_status = exit_builtin(tokens, argv_0);
+            // Free allocated memory (tokens, line, line_copy, etc.) if necessary
+            return exit_status;
         }
 
         execmd(tokens, argv_0);
