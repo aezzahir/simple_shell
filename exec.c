@@ -32,11 +32,5 @@ void execmd(char **argv, char *argv_0)
     if (_strcmp(command, "env") == 0) {
         // Call the function to print the environment variables
         print_environment();
-        // Free allocated memory and return
-        free(line_copy);
-        for (i = 0; tokens[i]; i++)
-            free(tokens[i]);
-        free(tokens);
-        return;
     }
 }
