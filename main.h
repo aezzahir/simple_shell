@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+
 /* Utilities functions */
 int _printf(const char *str);
 char *_strcpy(char *dest, char *src);
@@ -20,6 +21,8 @@ int _strlen(char *s);
 void prompt(void);
 void execmd(char **argv, char *argv_0);
 char *get_path(char *command);
+void print_environment();
+int _strcmp(char *s1, char *s2);
 
 
 #endif /* _MAIN_H */
