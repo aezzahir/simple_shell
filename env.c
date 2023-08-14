@@ -7,6 +7,7 @@ void print_environment() {
     // Loop through the array and print each environment variable
     while (environ[i] != NULL) {
         _printf(environ[i]);
+        _printf("\n");
         i++;
     }
 }
