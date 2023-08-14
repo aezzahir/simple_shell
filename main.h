@@ -23,8 +23,8 @@ int _atoi(char *s);
 void prompt(void);
 void execmd(char **argv, char *argv_0);
 char *get_path(char *command);
-void print_environment();
-int exit_builtin(char **tokens, const char *argv_0);
+void print_env();
+int exit_function(char **tokens, const char *argv_0);
 
 
 #endif /* _MAIN_H */
