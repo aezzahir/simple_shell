@@ -16,7 +16,7 @@ int exit_builtin(char **tokens, const char *argv_0) {
         return 0;
     } else if (tokens[2] != NULL) {
         // Too many arguments
-        fprintf(stderr, "%s: exit: too many arguments\n", argv_0);
+        perror("too many arguments\n");
         return -1;
     }
 
