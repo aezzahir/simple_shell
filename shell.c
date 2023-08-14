@@ -77,7 +77,7 @@ int main(int ac, char **argv)
 
         /* Check if the first command is "exit" */
         if (tokens[0] && strcmp(tokens[0], "exit") == 0) {
-            exit_status = exit_builtin(tokens, argv_0);
+            exit_status = exit_function(tokens, argv_0);
             // Free allocated memory (tokens, line, line_copy, etc.) if necessary
             return exit_status;
         }

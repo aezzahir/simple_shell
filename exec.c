@@ -31,6 +31,6 @@ void execmd(char **argv, char *argv_0)
     }
     if (_strcmp(command, "env") == 0) {
         // Call the function to print the environment variables
-        print_environment();
+        print_env();
     }
 }
