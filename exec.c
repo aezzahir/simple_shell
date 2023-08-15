@@ -10,8 +10,10 @@ void execmd(char **argv, char *argv_0)
 char *command = NULL, *full_command = NULL;
 pid_t pid, wpid;
 int status;
-if (argv && argv[0])
+if (!argv || !argv[0])
 {
+return;
+}
 command = argv[0];
 full_command = get_path(command);
 pid = fork();
@@ -38,6 +40,5 @@ while (!WIFEXITED(status) && !WIFSIGNALED(status));
 if (_strcmp(command, "env") == 0)
 {
 print_environment();
-}
 }
 }
