@@ -6,31 +6,34 @@ void free_tokens(char **tokens) {
         free(tokens[i]);
     free(tokens);
 }
-char **split_line(char *line, const char *delim, int *number_of_tokens) {
+
+char **split_line(char *line, int *number_of_tokens) {
     char **tokens = NULL;
     char *a_token;
     int i;
     *number_of_tokens = 0;
-    a_token = strtok(line, delim);
-    while (a_token != NULL) {
-        (*number_of_tokens)++;
-        a_token = strtok(NULL, delim);
-    }
-    (*number_of_tokens)++;
-    tokens = malloc(sizeof(char *) * (*number_of_tokens));
+    tokens = malloc(sizeof(char *) * BUFFER_SIZE);
     if (!tokens) {
         perror("tsh: memory allocation error");
         return NULL;
     }
-    a_token = strtok(line, delim);
-    for (i = 0; a_token != NULL; i++) {
-        tokens[i] = malloc(sizeof(char) * (strlen(a_token) + 1)); // +1 for '\0'
-        _strcpy(tokens[i], a_token);
-        a_token = strtok(NULL, delim);
+    a_token = strtok(line, " \n");
+    while (a_token != NULL) {
+        tokens[(*number_of_tokens)++] = a_token;
+        if (*number_of_tokens >= BUFFER_SIZE) {
+            // Handle buffer overflow by reallocating tokens array
+            tokens = realloc(tokens, sizeof(char *) * (BUFFER_SIZE * 2));
+            if (!tokens) {
+                perror("tsh: memory allocation error");
+                return NULL;
+            }
+        }
+        a_token = strtok(NULL, " \n");
     }
-    tokens[i] = NULL;
+    tokens[*number_of_tokens] = NULL;  // Null-terminate the tokens array
     return tokens;
 }
+
 int main(int ac, char **argv) {
     char *line = NULL, *line_copy = NULL, argv_0[100];
     char **tokens = NULL;
