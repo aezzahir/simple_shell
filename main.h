@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+/* External variables */
+extern char **environ;
 
 /* Utilities functions */
 int _printf(const char *str);
@@ -23,7 +25,13 @@ int _atoi(char *s);
 void prompt(void);
 void execmd(char **argv, char *argv_0);
 char *get_path(char *command);
-void print_environment();
+void print_environment(void);
 int exit_builtin(char **tokens);
+
+/* Split command utility functions */
+int get_number_of_tokens(char *command, const char *delim);
+char **tokenize_input(char *line_copy, const char *delim, int num_tokens);
+int memory_allocation_error(void);
+
 
 #endif /* _MAIN_H */

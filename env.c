@@ -7,8 +7,8 @@
 
 void print_environment(void)
 {
-extern char **environ;
 int i = 0;
+
 while (environ[i] != NULL)
 {
 _printf(environ[i]);
