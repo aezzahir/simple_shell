@@ -81,7 +81,7 @@ int main(int ac, char **argv)
             return exit_status;
         }
 
-        execmd(tokens, argv_0, environ);
+        execmd(tokens, argv_0);
 
         /* Free the tokens and line_copy */
         for (i = 0; tokens[i]; i++)

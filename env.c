@@ -2,16 +2,16 @@
 
 /**
  * print_environment - prints the env variable
- * @env: the global variable to print
  */
 
 
-void print_environment(char **env)
+void print_environment(void)
 {
+extern char **environ;
 int i = 0;
-while (env[i] != NULL)
+while (environ[i] != NULL)
 {
-_printf(env[i]);
+_printf(environ[i]);
 _printf("\n");
 i++;
 }
