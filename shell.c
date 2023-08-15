@@ -73,6 +73,4 @@ int main(int ac, char **argv) {
         execmd(tokens, argv_0);
         free_tokens(tokens);
     }
-    free(line_copy);
-    free(line);
 }
