@@ -14,7 +14,7 @@ int num_vars = 0;
  * @value: the value of the variable to add or to modify
  * Return: returns 0 (success)
  */
-int _setenv(const char *variable, const char *value)
+int _setenv(char *variable, char *value)
 {
 if (num_vars >= MAX_ENV_VARS)
 {
@@ -48,7 +48,7 @@ return (0);
  * @variable: the variable to remove
  * Return: returns 0 (success)
  */
-int _unsetenv(const char *variable)
+int _unsetenv(char *variable)
 {
 for (int i = 0; i < num_vars; i++)
 {
