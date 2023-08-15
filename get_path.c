@@ -17,7 +17,7 @@ path_copy = malloc(sizeof(char) * path_length);
 _strcpy(path_copy, path);
 command_length = _strlen(command);
 path_token = strtok(path_copy, ":");
-while(path_token != NULL)
+while (path_token != NULL)
 {
 directory_length = _strlen(path_token);
 file_path = malloc(command_length + directory_length + 2);
