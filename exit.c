@@ -4,7 +4,6 @@
 /**
  * exit_builtin - Implementation of the "exit" built-in command
  * @tokens: Array of tokens from the user input
- * @argv_0: Name of the shell program
  * Return: 0 if the shell should exit, -1 on error
  */
 int exit_builtin(char **tokens)
