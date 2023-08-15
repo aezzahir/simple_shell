@@ -5,7 +5,7 @@
  * @argv: Array of command arguments
  * @argv_0: Name of the shell program
  */
-void execmd(char **argv, char *argv_0) 
+void execmd(char **argv, char *argv_0)
 {
 char *command = NULL, *full_command = NULL;
 pid_t pid, wpid;
@@ -30,11 +30,9 @@ perror("tsh");
 }
 else
 {
-do
-{
+do {
 wpid = waitpid(pid, &status, WUNTRACED);
-}
-while (!WIFEXITED(status) && !WIFSIGNALED(status));
+} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 }
 if (_strcmp(command, "env") == 0)
 {
