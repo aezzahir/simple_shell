@@ -1,6 +1,8 @@
 #ifndef _MAIN_H
 #define _MAIN_H
 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,6 +29,8 @@ void execmd(char **argv, char *argv_0);
 char *get_path(char *command);
 void print_environment(void);
 int exit_builtin(char **tokens);
+int _setenv(const char* variable, const char* value);
+int _unsetenv(const char* variable);
 
 /* Split command utility functions */
 int get_number_of_tokens(char *command, const char *delim);
