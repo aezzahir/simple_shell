@@ -19,7 +19,6 @@ extern char **environ;
 #define MAX_VALUE_LENGTH 100
 char env_vars[MAX_ENV_VARS][MAX_VAR_LENGTH];
 char env_vals[MAX_ENV_VARS][MAX_VALUE_LENGTH];
-int num_vars = 0;
 
 /* Utilities functions */
 int _printf(const char *str);
