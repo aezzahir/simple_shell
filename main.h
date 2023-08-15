@@ -25,6 +25,5 @@ void execmd(char **argv, char *argv_0);
 char *get_path(char *command);
 void print_environment();
 int exit_builtin(char **tokens);
-void free_tokens(char **tokens);
 
 #endif /* _MAIN_H */

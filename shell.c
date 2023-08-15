@@ -1,6 +1,12 @@
 #include "main.h"
 #define BUFFER_SIZE 1024
 
+void free_tokens(char **tokens) {
+    int i;
+    for (i = 0; tokens[i]; i++)
+        free(tokens[i]);
+    free(tokens);
+}
 
 char **split_line(char *line, int *number_of_tokens) {
     char **tokens = NULL;

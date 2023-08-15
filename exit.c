@@ -25,7 +25,6 @@ int exit_builtin(char **tokens) {
     // Convert the status argument to an integer
     exit_status = _atoi(tokens[1]);
 
-    free_tokens(tokens);
 
     // Return the exit status
     return exit_status;
