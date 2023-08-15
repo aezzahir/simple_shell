@@ -18,6 +18,7 @@ int main(int ac, char **argv)
 	const char *delim = " \n";
 	int number_of_tokens = 0;
 	int i, exit_status;
+	int num_vars = 0;
 
 	(void)ac;
 	_strcpy(argv_0, argv[0]);
