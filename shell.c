@@ -57,7 +57,7 @@ int main(int ac, char **argv) {
             return (-1);
         }
         _strcpy(line_copy, line);
-        tokens = split_line(line, delim, &number_of_tokens);
+        tokens = split_line(line, &number_of_tokens);
         if (!tokens) {
             free(line_copy);
             return -1;
