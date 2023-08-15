@@ -25,7 +25,7 @@ int exit_builtin(char **tokens) {
     // Convert the status argument to an integer
     exit_status = _atoi(tokens[1]);
 
-    // Free allocated memory (tokens, line, line_copy, etc.) if necessary
+    free_tokens(tokens);
 
     // Return the exit status
     return exit_status;
