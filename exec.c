@@ -9,7 +9,7 @@
  * @argv_0: Name of the shell program
  */
 
-void execmd(char **argv, char *argv_0) 
+void execmd(char **argv, char *argv_0)
 {
 char *command = NULL, *full_command = NULL;
 pid_t pid, wpid;
