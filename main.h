@@ -32,6 +32,7 @@ void print_environment(void);
 int exit_builtin(char **tokens);
 int _setenv(char *variable, char *value, int *num_vars_ptr);
 int _unsetenv(char *variable, int *num_vars_ptr);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 
 /* Split command utility functions */
 int get_number_of_tokens(char *command, const char *delim);

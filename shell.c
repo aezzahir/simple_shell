@@ -25,7 +25,7 @@ int main(int ac, char **argv)
 	while (1)
 	{
 		prompt();
-		linelen = getline(&line, &linecap, stdin);
+		linelen = _getline(&line, &linecap, stdin);
 		if (linelen == -1)
 		{
 			_printf("\n");

@@ -55,12 +55,13 @@ int _unsetenv(char *variable, int *num_vars_ptr)
 #define MAX_VALUE_LENGTH 100
 char env_vars[MAX_ENV_VARS][MAX_VAR_LENGTH];
 char env_vals[MAX_ENV_VARS][MAX_VALUE_LENGTH];
-int i;
+int i, j;
+
 for (i = 0; i < *num_vars_ptr; i++)
 {
 if (_strcmp(env_vars[i], variable) == 0)
 {
-for (int j = i; j < *num_vars_ptr - 1; j++)
+for (j = i; j < *num_vars_ptr - 1; j++)
 {
 _strcpy(env_vars[j], env_vars[j + 1]);
 _strcpy(env_vals[j], env_vals[j + 1]);
