@@ -14,6 +14,7 @@
 
 /* External variables */
 extern char **environ;
+int num_vars = 0;
 #define MAX_ENV_VARS 100
 #define MAX_VAR_LENGTH 50
 #define MAX_VALUE_LENGTH 100

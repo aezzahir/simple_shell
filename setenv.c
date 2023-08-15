@@ -1,6 +1,6 @@
 #include "main.h"
 
-int num_vars = 0;
+
 /**
  * _setenv - Initialize a new environment variable, or modify an existing one
  * @variable: the variable to add or to modify
