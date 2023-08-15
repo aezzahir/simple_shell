@@ -21,7 +21,7 @@ int _atoi(char *s);
 
 /* Shell functions */
 void prompt(void);
-void execmd(char **argv, char *argv_0);
+void execmd(char **argv, char *argv_0, char **env);
 char *get_path(char *command);
 void print_environment();
 int exit_builtin(char **tokens);
