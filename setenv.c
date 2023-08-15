@@ -9,13 +9,14 @@
  */
 int _setenv(char *variable, char *value)
 {
+int i;
 if (num_vars >= MAX_ENV_VARS)
 {
 perror("Error: Too many environment variables\n");
 return (-1);
 }
 
-for (int i = 0; i < num_vars; i++)
+for (i = 0; i < num_vars; i++)
 {
 if (_strcmp(env_vars[i], variable) == 0)
 {
@@ -43,7 +44,8 @@ return (0);
  */
 int _unsetenv(char *variable)
 {
-for (int i = 0; i < num_vars; i++)
+int i;
+for (i = 0; i < num_vars; i++)
 {
 if (_strcmp(env_vars[i], variable) == 0)
 {
