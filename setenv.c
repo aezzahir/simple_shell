@@ -14,9 +14,10 @@ int num_vars = 0;
  * @value: the value of the variable to add or to modify
  * Return: returns 0 (success)
  */
-int _setenv(const char* variable, const char* value)
+int _setenv(const char *variable, const char *value)
 {
-if (num_vars >= MAX_ENV_VARS) {
+if (num_vars >= MAX_ENV_VARS)
+{
 perror("Error: Too many environment variables\n");
 return (-1);
 }
@@ -47,7 +48,7 @@ return (0);
  * @variable: the variable to remove
  * Return: returns 0 (success)
  */
-int _unsetenv(const char* variable)
+int _unsetenv(const char *variable)
 {
 for (int i = 0; i < num_vars; i++)
 {
