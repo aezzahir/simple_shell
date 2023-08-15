@@ -1,13 +1,18 @@
 #include "main.h"
 
-void print_environment() {
-    extern char **environ; // The array containing environment variables
-    int i = 0;
+/**
+ * print_environment - prints the env variable
+ */
 
-    // Loop through the array and print each environment variable
-    while (environ[i] != NULL) {
-        _printf(environ[i]);
-        _printf("\n");
-        i++;
-    }
+
+void print_environment(void)
+{
+extern char **environ;
+int i = 0;
+while (environ[i] != NULL)
+{
+_printf(environ[i]);
+_printf("\n");
+i++;
+}
 }
