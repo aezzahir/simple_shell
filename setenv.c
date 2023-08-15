@@ -1,11 +1,7 @@
 #include "main.h"
 
 
-#define MAX_ENV_VARS 100
-#define MAX_VAR_LENGTH 50
-#define MAX_VALUE_LENGTH 100
-char env_vars[MAX_ENV_VARS][MAX_VAR_LENGTH];
-char env_vals[MAX_ENV_VARS][MAX_VALUE_LENGTH];
+
 /**
  * _setenv - Initialize a new environment variable, or modify an existing one
  * @variable: the variable to add or to modify
@@ -15,6 +11,11 @@ char env_vals[MAX_ENV_VARS][MAX_VALUE_LENGTH];
  */
 int _setenv(char *variable, char *value, int *num_vars_ptr)
 {
+#define MAX_ENV_VARS 100
+#define MAX_VAR_LENGTH 50
+#define MAX_VALUE_LENGTH 100
+char env_vars[MAX_ENV_VARS][MAX_VAR_LENGTH];
+char env_vals[MAX_ENV_VARS][MAX_VALUE_LENGTH];
 int i;
 if (*num_vars_ptr >= MAX_ENV_VARS)
 {
@@ -49,6 +50,11 @@ return (0);
  */
 int _unsetenv(char *variable, int *num_vars_ptr)
 {
+#define MAX_ENV_VARS 100
+#define MAX_VAR_LENGTH 50
+#define MAX_VALUE_LENGTH 100
+char env_vars[MAX_ENV_VARS][MAX_VAR_LENGTH];
+char env_vals[MAX_ENV_VARS][MAX_VALUE_LENGTH];
 int i;
 for (i = 0; i < *num_vars_ptr; i++)
 {
