@@ -4,9 +4,7 @@
 #define MAX_VAR_LENGTH 50
 #define MAX_VALUE_LENGTH 100
 
-char env_vars[MAX_ENV_VARS][MAX_VAR_LENGTH];
-char env_vals[MAX_ENV_VARS][MAX_VALUE_LENGTH];
-int num_vars = 0;
+
 
 /**
  * _setenv - Initialize a new environment variable, or modify an existing one
