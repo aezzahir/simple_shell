@@ -70,7 +70,7 @@ return;
 }
 _strcpy(line_copy, line);
 number_of_commands = get_number_of_tokens(line, delim);
-token = tokenize_input(line, delim, number_of_commands);
+token = *tokenize_input(line, delim, number_of_commands);
 while (token != NULL)
 {
 tokens = NULL;
