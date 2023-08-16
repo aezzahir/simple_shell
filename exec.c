@@ -9,7 +9,7 @@
 void execmd(char **argv, char *argv_0)
 {
 char *command = NULL, *full_command = NULL;
-pid_t pid, wpid;
+pid_t pid;
 int status;
 
 if (!argv || !argv[0])
@@ -41,7 +41,7 @@ perror("tsh");
 else
 {
 do {
-wpid = waitpid(pid, &status, WUNTRACED);
+waitpid(pid, &status, WUNTRACED);
 } while (!WIFEXITED(status) && !WIFSIGNALED(status));
 }
 if (_strcmp(command, "env") == 0)
