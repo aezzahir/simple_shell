@@ -37,20 +37,7 @@ int main(int ac, char **argv)
 		_strcpy(line_copy, line);
 		number_of_tokens = get_number_of_tokens(line, delim);
 		tokens = tokenize_input(line_copy, delim, number_of_tokens);
-if (tokens[0] && strcmp(tokens[0], "setenv") == 0)
-{
-if (number_of_tokens != 3)
-fprintf(stderr, "Usage: setenv VARIABLE VALUE\n");
-else
-_setenv(tokens[1], tokens[2], &num_vars);
-}
-else if (tokens[0] && strcmp(tokens[0], "unsetenv") == 0)
-{
-if (number_of_tokens != 2)
-fprintf(stderr, "Usage: unsetenv VARIABLE\n");
-else
-_unsetenv(tokens[1], &num_vars);
-}
+
 		if (tokens[0] && strcmp(tokens[0], "exit") == 0)
 		{
 			exit_status = exit_builtin(tokens);
