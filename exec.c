@@ -74,6 +74,7 @@ number_of_commands = get_number_of_tokens(line, d);
 token = *tokenize_input(line, d, number_of_commands);
 while (token != NULL)
 {
+token = trim_leading_chars(token, " \t;");
 tokens = NULL;
 number_of_tokens = get_number_of_tokens(token, delim);
 tokens = tokenize_input(token, delim, number_of_tokens);
@@ -87,3 +88,14 @@ token = strtok(NULL, ";");
 free(line_copy);
 }
 
+// Function to trim leading characters from a string
+char *trim_leading_chars(char *str, const char *chars)
+{
+size_t len = strlen(str);
+size_t i = 0;
+while (i < len && strchr(chars, str[i]))
+{
+i++;
+}
+return (str + i);
+}
