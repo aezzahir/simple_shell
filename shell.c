@@ -17,7 +17,9 @@ int main(int ac, char **argv)
 	ssize_t linelen;
 	const char *delim = " \n";
 	int number_of_tokens = 0;
-	int i, exit_status, num_vars = 0;
+	int i, exit_status;
+	int num_vars = 0;
+
 	(void)ac;
 	_strcpy(argv_0, argv[0]);
 	while (1)
@@ -29,8 +31,10 @@ int main(int ac, char **argv)
 			_printf("\n");
 			return (-1);
 		}
-		if (strchr(line, ';') != NULL)
-			exec_multiple_cmds(line, argv_0, delim);
+if (strchr(line, ';') != NULL)
+{
+exec_multiple_cmds(line, argv_0, delim);
+}
 		line_copy = malloc(sizeof(char) * linelen);
 		if (!line_copy)
 			memory_allocation_error();
@@ -40,6 +44,7 @@ int main(int ac, char **argv)
 if (tokens[0] && strcmp(tokens[0], "setenv") == 0)
 {
 if (number_of_tokens != 3)
+{
 perror("Usage: setenv VARIABLE VALUE\n");
 }
 else
