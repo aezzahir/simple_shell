@@ -60,6 +60,8 @@ void exec_multiple_cmds(char *line, char *argv_0)
 int number_of_tokens;
 char *token;
 char **tokens;
+const char *delim = " \n";
+int i;
 char *line_copy = malloc(sizeof(char) * (strlen(line) + 1));
 if (!line_copy)
 {
@@ -74,7 +76,7 @@ tokens = NULL;
 number_of_tokens = get_number_of_tokens(token, delim);
 tokens = tokenize_input(token, delim, number_of_tokens);
 execmd(tokens, argv_0);
-for (int i = 0; tokens[i]; i++)
+for (i = 0; tokens[i]; i++)
 {
 free(tokens[i]);
 }
