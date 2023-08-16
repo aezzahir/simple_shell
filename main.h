@@ -34,13 +34,11 @@ int exit_builtin(char **tokens);
 int _setenv(char *variable, char *value, int *num_vars_ptr);
 int _unsetenv(char *variable, int *num_vars_ptr);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
-void exec_multiple_cmds(char *line, char *argv_0, const char *delim);
 
 /* Split command utility functions */
 int get_number_of_tokens(char *command, const char *delim);
 char **tokenize_input(char *line_copy, const char *delim, int num_tokens);
 int memory_allocation_error(void);
-void copy_string_with_allocation(char *destination, char *source);
 
 
 #endif /* _MAIN_H */

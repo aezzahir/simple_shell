@@ -17,9 +17,7 @@ int main(int ac, char **argv)
 	ssize_t linelen;
 	const char *delim = " \n";
 	int number_of_tokens = 0;
-	int i, exit_status;
-	int num_vars = 0;
-
+	int i, exit_status, num_vars = 0;
 	(void)ac;
 	_strcpy(argv_0, argv[0]);
 	while (1)
@@ -33,8 +31,10 @@ int main(int ac, char **argv)
 		}
 if (strchr(line, ';') != NULL)
 exec_multiple_cmds(line, argv_0, delim);
-
-copy_string_with_allocation(line_copy, line);
+		line_copy = malloc(sizeof(char) * linelen);
+		if (!line_copy)
+			memory_allocation_error();
+		_strcpy(line_copy, line);
 		number_of_tokens = get_number_of_tokens(line, delim);
 		tokens = tokenize_input(line_copy, delim, number_of_tokens);
 if (tokens[0] && strcmp(tokens[0], "setenv") == 0)
