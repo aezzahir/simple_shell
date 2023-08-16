@@ -40,14 +40,14 @@ int main(int ac, char **argv)
 if (tokens[0] && strcmp(tokens[0], "setenv") == 0)
 {
 if (number_of_tokens != 3)
-perror("Usage: setenv VARIABLE VALUE\n");
+fprintf(stderr, "Usage: setenv VARIABLE VALUE\n");
 else
 _setenv(tokens[1], tokens[2], &num_vars);
 }
 else if (tokens[0] && strcmp(tokens[0], "unsetenv") == 0)
 {
 if (number_of_tokens != 2)
-perror("Usage: unsetenv VARIABLE\n");
+fprintf(stderr, "Usage: unsetenv VARIABLE\n");
 else
 _unsetenv(tokens[1], &num_vars);
 }

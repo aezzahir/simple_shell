@@ -33,7 +33,7 @@ return (0);
 
 if (_strlen(variable) >= MAX_VAR_LENGTH || _strlen(value) >= MAX_VALUE_LENGTH)
 {
-perror("Error: Variable or value is too long\n");
+fprintf(stderr, "Error: Variable or value is too long\n");
 return (-1);
 }
 _strcpy(env_vars[*num_vars_ptr], variable);
