@@ -65,7 +65,7 @@ return (-1);
 void copy_string_with_allocation(char *destination, char *source)
 {
     destination = malloc(strlen(source) + 1);
-    if (*destination)
+    if (destination)
     {
         _strcpy(destination, source);
     }
