@@ -31,6 +31,10 @@ int main(int ac, char **argv)
 			_printf("\n");
 			return (-1);
 		}
+if (strchr(line, ';') != NULL)
+{
+exec_multiple_cmds(line, argv_0);
+}
 		line_copy = malloc(sizeof(char) * linelen);
 		if (!line_copy)
 			memory_allocation_error();
