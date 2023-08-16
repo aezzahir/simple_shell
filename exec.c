@@ -50,6 +50,18 @@ print_environment();
 }
 }
 
+
+char *trim_leading_chars(char *str, const char *chars)
+{
+size_t len = strlen(str);
+size_t i = 0;
+while (i < len && strchr(chars, str[i]))
+{
+i++;
+}
+return (str + i);
+}
+
 /**
  * exec_multiple_cmds - Executes multiple commands separated by ';'.
  * @line: Input line containing multiple commands
@@ -88,14 +100,4 @@ token = strtok(NULL, ";");
 free(line_copy);
 }
 
-// Function to trim leading characters from a string
-char *trim_leading_chars(char *str, const char *chars)
-{
-size_t len = strlen(str);
-size_t i = 0;
-while (i < len && strchr(chars, str[i]))
-{
-i++;
-}
-return (str + i);
-}
+
