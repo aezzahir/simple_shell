@@ -40,7 +40,7 @@ void exec_multiple_cmds(char *line, char *argv_0, const char *delim);
 int get_number_of_tokens(char *command, const char *delim);
 char **tokenize_input(char *line_copy, const char *delim, int num_tokens);
 int memory_allocation_error(void);
-void copy_string_with_allocation(char *destination, const char *source);
+void copy_string_with_allocation(char *destination, char *source);
 
 
 #endif /* _MAIN_H */
