@@ -17,9 +17,7 @@ int main(int ac, char **argv)
 	ssize_t linelen;
 	const char *delim = " \n";
 	int number_of_tokens = 0;
-	int i, exit_status;
-	int num_vars = 0;
-
+	int i, exit_status, int num_vars = 0;
 	(void)ac;
 	_strcpy(argv_0, argv[0]);
 	while (1)
@@ -44,18 +42,17 @@ exec_multiple_cmds(line, argv_0, delim);
 if (tokens[0] && strcmp(tokens[0], "setenv") == 0)
 {
 if (number_of_tokens != 3)
-        perror("Usage: setenv VARIABLE VALUE\n");
+perror("Usage: setenv VARIABLE VALUE\n");
 else
-        _setenv(tokens[1], tokens[2], &num_vars);
+_setenv(tokens[1], tokens[2], &num_vars);
 }
 else if (tokens[0] && strcmp(tokens[0], "unsetenv") == 0)
 {
 if (number_of_tokens != 2)
-        perror("Usage: unsetenv VARIABLE\n");
+perror("Usage: unsetenv VARIABLE\n");
 else
-        _unsetenv(tokens[1], &num_vars);	
+_unsetenv(tokens[1], &num_vars);	
 }
-    
 		if (tokens[0] && strcmp(tokens[0], "exit") == 0)
 		{
 			exit_status = exit_builtin(tokens);
