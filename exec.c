@@ -57,30 +57,30 @@ print_environment();
  */
 void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
 {
-int number_of_tokens;
-char *token;
-char **tokens;
-int i;
-char *line_copy = malloc(sizeof(char) * (strlen(line) + 1));
-if (!line_copy)
-{
-memory_allocation_error();
-return;
+    int number_of_tokens;
+    char *token;
+    char **tokens;
+    int i;
+    char *line_copy = malloc(sizeof(char) * (strlen(line) + 1));
+    if (!line_copy)
+    {
+        memory_allocation_error();
+        return;
+    }
+    _strcpy(line_copy, line);
+    token = strtok(line_copy, delim);
+    while (token != NULL)
+    {
+        if (strlen(token) > 0) {
+            number_of_tokens = get_number_of_tokens(token, delim);
+            tokens = tokenize_input(token, delim, number_of_tokens);
+            exec_single_cmd(tokens, argv_0);
+            for (i = 0; tokens[i]; i++)
+            {
+                free(tokens[i]);
+            }
+        }
+        token = strtok(NULL, delim);
+    }
+    free(line_copy);
 }
-_strcpy(line_copy, line);
-token = strtok(line_copy, ";");
-while (token != NULL)
-{
-tokens = NULL;
-number_of_tokens = get_number_of_tokens(token, delim);
-tokens = tokenize_input(token, delim, number_of_tokens);
-execmd(tokens, argv_0);
-for (i = 0; tokens[i]; i++)
-{
-free(tokens[i]);
-}
-token = strtok(NULL, ";");
-}
-free(line_copy);
-}
-
