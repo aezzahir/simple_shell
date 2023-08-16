@@ -38,10 +38,9 @@ char **tokenize_input(char *line_copy, const char *delim, int number_of_tokens)
     a_token = strtok(line_copy, delim);
     for (i = 0; a_token != NULL; i++)
     {
-        // Handle the case when the token is just a semicolon
         if (strcmp(a_token, ";") == 0)
         {
-            tokens[i] = malloc(sizeof(char) * 2); // Allocate memory for semicolon
+            tokens[i] = malloc(sizeof(char) * 2);
             if (!tokens[i])
             {
                 memory_allocation_error();
