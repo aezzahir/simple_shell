@@ -61,6 +61,7 @@ void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
 int number_of_tokens, number_of_commands;
 char *token;
 char **tokens;
+const char *d = ";";
 int i;
 char *line_copy = malloc(sizeof(char) * (strlen(line) + 1));
 if (!line_copy)
@@ -69,8 +70,8 @@ memory_allocation_error();
 return;
 }
 _strcpy(line_copy, line);
-number_of_commands = get_number_of_tokens(line, delim);
-token = *tokenize_input(line, delim, number_of_commands);
+number_of_commands = get_number_of_tokens(line, d);
+token = *tokenize_input(line, d, number_of_commands);
 while (token != NULL)
 {
 tokens = NULL;
