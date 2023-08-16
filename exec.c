@@ -54,6 +54,7 @@ print_environment();
  * exec_multiple_cmds - Executes multiple commands separated by ';'.
  * @line: Input line containing multiple commands
  * @argv_0: Name of the shell program
+ * @delim: the delimiter
  */
 void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
 {
