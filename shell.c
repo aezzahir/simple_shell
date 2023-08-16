@@ -17,7 +17,7 @@ int main(int ac, char **argv)
 	ssize_t linelen;
 	const char *delim = " \n";
 	int number_of_tokens = 0;
-	int i, exit_status, int num_vars = 0;
+	int i, exit_status, num_vars = 0;
 	(void)ac;
 	_strcpy(argv_0, argv[0]);
 	while (1)
