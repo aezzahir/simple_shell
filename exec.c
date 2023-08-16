@@ -62,6 +62,7 @@ int number_of_tokens, number_of_commands;
 char *token;
 char **tokens;
 int i;
+const char *d = ";";
 char *line_copy = malloc(sizeof(char) * (strlen(line) + 1));
 if (!line_copy)
 {
