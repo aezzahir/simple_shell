@@ -29,8 +29,8 @@ int main(int ac, char **argv)
 			_printf("\n");
 			return (-1);
 		}
-if (strchr(line, ';') != NULL)
-exec_multiple_cmds(line, argv_0, delim);
+		if (strchr(line, ';') != NULL)
+			exec_multiple_cmds(line, argv_0, delim);
 		line_copy = malloc(sizeof(char) * linelen);
 		if (!line_copy)
 			memory_allocation_error();
@@ -40,7 +40,6 @@ exec_multiple_cmds(line, argv_0, delim);
 if (tokens[0] && strcmp(tokens[0], "setenv") == 0)
 {
 if (number_of_tokens != 3)
-{
 perror("Usage: setenv VARIABLE VALUE\n");
 }
 else
