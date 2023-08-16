@@ -51,7 +51,7 @@ else if (tokens[0] && strcmp(tokens[0], "unsetenv") == 0)
 if (number_of_tokens != 2)
 perror("Usage: unsetenv VARIABLE\n");
 else
-_unsetenv(tokens[1], &num_vars);	
+_unsetenv(tokens[1], &num_vars);
 }
 		if (tokens[0] && strcmp(tokens[0], "exit") == 0)
 		{
