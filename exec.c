@@ -74,7 +74,7 @@ void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
         if (strlen(token) > 0) {
             number_of_tokens = get_number_of_tokens(token, delim);
             tokens = tokenize_input(token, delim, number_of_tokens);
-            exec_single_cmd(tokens, argv_0);
+            execmd(tokens, argv_0);
             for (i = 0; tokens[i]; i++)
             {
                 free(tokens[i]);
