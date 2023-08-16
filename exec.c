@@ -55,12 +55,11 @@ print_environment();
  * @line: Input line containing multiple commands
  * @argv_0: Name of the shell program
  */
-void exec_multiple_cmds(char *line, char *argv_0)
+void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
 {
 int number_of_tokens;
 char *token;
 char **tokens;
-const char *delim = " \n";
 int i;
 char *line_copy = malloc(sizeof(char) * (strlen(line) + 1));
 if (!line_copy)

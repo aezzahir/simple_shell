@@ -33,7 +33,7 @@ int main(int ac, char **argv)
 		}
 if (strchr(line, ';') != NULL)
 {
-exec_multiple_cmds(line, argv_0);
+exec_multiple_cmds(line, argv_0, delim);
 }
 		line_copy = malloc(sizeof(char) * linelen);
 		if (!line_copy)
