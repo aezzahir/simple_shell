@@ -58,7 +58,7 @@ print_environment();
  */
 void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
 {
-int number_of_tokens;
+int number_of_tokens, number_of_commands;
 char *token;
 char **tokens;
 int i;
@@ -69,7 +69,8 @@ memory_allocation_error();
 return;
 }
 _strcpy(line_copy, line);
-token = strtok(line_copy, ";");
+number_of_commands = get_number_of_tokens(line, delim);
+token = tokenize_input(line, delim, number_of_commands);
 while (token != NULL)
 {
 tokens = NULL;
