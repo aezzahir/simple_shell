@@ -50,24 +50,6 @@ print_environment();
 }
 }
 
-
-#include <stdbool.h>
-#include <ctype.h>
-
-bool is_empty_or_whitespace(const char *str)
-{
-    while (*str)
-    {
-        if (!isspace((unsigned char)*str))
-        {
-            return false;
-        }
-        str++;
-    }
-    return true;
-}
-
-
 /**
  * exec_multiple_cmds - Executes multiple commands separated by ';'.
  * @line: Input line containing multiple commands
@@ -76,40 +58,32 @@ bool is_empty_or_whitespace(const char *str)
  */
 void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
 {
-    int number_of_tokens, number_of_commands;
-    char *token;
-    char **tokens;
-    int i;
-    const char *d = ";";
-    char *line_copy = malloc(sizeof(char) * (strlen(line) + 1));
-    
-    if (!line_copy)
-    {
-        memory_allocation_error();
-        return;
-    }
-    
-    _strcpy(line_copy, line);
-    number_of_commands = get_number_of_tokens(line, d);
-    token = *tokenize_input(line, d, number_of_commands);
-    
-    while (token != NULL)
-    {
-        if (!is_empty_or_whitespace(token))
-        {
-            number_of_tokens = get_number_of_tokens(token, delim);
-            tokens = tokenize_input(token, delim, number_of_tokens);
-            execmd(tokens, argv_0);
-
-            for (i = 0; tokens[i]; i++)
-            {
-                free(tokens[i]);
-            }
-            free(tokens);
-        }
-        
-        token = strtok(NULL, d);
-    }
-    
-    free(line_copy);
+int number_of_tokens, number_of_commands;
+char *token;
+char **tokens;
+int i;
+const char *d = ";";
+char *line_copy = malloc(sizeof(char) * (strlen(line) + 1));
+if (!line_copy)
+{
+memory_allocation_error();
+return;
 }
+_strcpy(line_copy, line);
+number_of_commands = get_number_of_tokens(line, d);
+token = *tokenize_input(line, d, number_of_commands);
+while (token != NULL)
+{
+tokens = NULL;
+number_of_tokens = get_number_of_tokens(token, delim);
+tokens = tokenize_input(token, delim, number_of_tokens);
+execmd(tokens, argv_0);
+for (i = 0; tokens[i]; i++)
+{
+free(tokens[i]);
+}
+token = strtok(NULL, ";");
+}
+free(line_copy);
+}
+
