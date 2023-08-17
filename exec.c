@@ -80,7 +80,6 @@ tokens = tokenize_input(token, delim, number_of_tokens);
 execmd(tokens, argv_0);
 for (i = 0; tokens[i]; i++)
 {
-printf("%s", tokens[i]);
 free(tokens[i]);
 }
 token = strtok(NULL, ";");
