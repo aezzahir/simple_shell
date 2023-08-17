@@ -58,7 +58,7 @@ print_environment();
  */
 void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
 {
-    int number_of_tokens, number_of_commands;
+    int number_of_tokens;
     char *token;
     char **tokens;
     int i;
@@ -71,7 +71,6 @@ void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
         return;
     }
     _strcpy(line_copy, line);
-    number_of_commands = get_number_of_tokens(line, d);
     token = strtok(line_copy, d);
     
     while (token != NULL)
