@@ -75,8 +75,9 @@ void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
     token = strtok(line_copy, d);
     while (token != NULL)
     {
-        number_of_tokens = get_number_of_tokens(token, delim);
-        tokens = tokenize_input(token, delim, number_of_tokens);
+        number_of_tokens = get_number_of_tokens(token, " ");
+        tokens = tokenize_input(token, " ", number_of_tokens);
+        
         execmd(tokens, argv_0);
 
         for (i = 0; tokens[i]; i++)
@@ -90,5 +91,6 @@ void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
 
     free(line_copy);
 }
+
 
 
