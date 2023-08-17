@@ -77,14 +77,14 @@ while (token != NULL)
 tokens = NULL;
 number_of_tokens = get_number_of_tokens(token, delim);
 tokens = tokenize_input(token, delim, number_of_tokens);
-while (tokens != NULL)
+while (*tokens != NULL)
 {
 execmd(tokens, argv_0);
 for (i = 0; tokens[i]; i++)
 {
 free(tokens[i]);
 }
-tokens = strtok(NULL, delim);
+*tokens = strtok(NULL, delim);
 }
 token = strtok(NULL, ";");
 }
