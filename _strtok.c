@@ -9,7 +9,7 @@
  */
 char *_strtok(char *str, const char *delim)
 {
-	static char *last_token = NULL;
+	static char *last_token;
 	char *token_start;
 	int i;
 
@@ -18,7 +18,6 @@ char *_strtok(char *str, const char *delim)
 
 	if (str == NULL)
 		return (NULL);
-
 	/* Skip any leading delimiters */
 	for (; *str; str++)
 	{
@@ -27,7 +26,6 @@ char *_strtok(char *str, const char *delim)
 		if (!delim[i]) /* Not a delimiter */
 			break;
 	}
-
 	/* Check if we reached the end of the string */
 	if (*str == '\0')
 	{
@@ -36,8 +34,6 @@ char *_strtok(char *str, const char *delim)
 	}
 
 	token_start = str;
-
-	/* Find the end of the token */
 	for (; *str; str++)
 	{
 		for (i = 0; delim[i]; i++)
@@ -50,8 +46,7 @@ char *_strtok(char *str, const char *delim)
 			}
 		}
 	}
-
-	/* Return the final token */
 	last_token = NULL;
 	return (token_start);
 }
+
