@@ -22,7 +22,8 @@ int main(int ac, char **argv)
 	_strcpy(argv_0, argv[0]);
 	while (1)
 	{
-		prompt();
+		if (isatty(STDIN_FILENO))
+			prompt();
 		linelen = _getline(&line, &linecap, stdin);
 		if (linelen == -1)
 		{
