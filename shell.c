@@ -28,12 +28,10 @@ int main(int ac, char **argv)
 		if (linelen == -1)
 		{
 			if (isatty(STDIN_FILENO))
-			{
 				_printf("\n");
-			}
 			return (-1);
 		}
-		if (strchr(line, ';') != NULL)
+		if (_strchr(line, ';') != NULL)
 			exec_multiple_cmds(line, argv_0, delim);
 		line_copy = malloc(sizeof(char) * linelen);
 		if (!line_copy)
@@ -41,7 +39,7 @@ int main(int ac, char **argv)
 		_strcpy(line_copy, line);
 		number_of_tokens = get_number_of_tokens(line, delim);
 		tokens = tokenize_input(line_copy, delim, number_of_tokens);
-		if (tokens[0] && strcmp(tokens[0], "exit") == 0)
+		if (tokens[0] && _strcmp(tokens[0], "exit") == 0)
 		{
 			exit_status = exit_builtin(tokens);
 			return (exit_status);
