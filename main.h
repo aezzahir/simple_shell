@@ -24,8 +24,7 @@ int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 int _atoi(char *s);
 void *_memcpy(void *dest, const void *src, size_t n);
-void process_line(char *line, char *argv_0, const char *delim);
-void free_tokens(char **tokens);
+char *_strchr(char *s, char c);
 
 
 /* Shell functions */
