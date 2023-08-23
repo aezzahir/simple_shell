@@ -27,7 +27,10 @@ int main(int ac, char **argv)
 		linelen = _getline(&line, &linecap, stdin);
 		if (linelen == -1)
 		{
-			_printf("\n");
+			if (isatty(STDIN_FILENO))
+			{
+				_printf("\n");
+			}
 			return (-1);
 		}
 		if (strchr(line, ';') != NULL)
@@ -38,7 +41,6 @@ int main(int ac, char **argv)
 		_strcpy(line_copy, line);
 		number_of_tokens = get_number_of_tokens(line, delim);
 		tokens = tokenize_input(line_copy, delim, number_of_tokens);
-
 		if (tokens[0] && strcmp(tokens[0], "exit") == 0)
 		{
 			exit_status = exit_builtin(tokens);
@@ -47,7 +49,6 @@ int main(int ac, char **argv)
 		execmd(tokens, argv_0);
 		for (i = 0; tokens[i]; i++)
 			free(tokens[i]);
-
 	}
 	free(tokens);
 	free(line_copy);

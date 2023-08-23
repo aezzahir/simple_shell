@@ -7,6 +7,6 @@
 
 void prompt(void)
 {
-char *prompt = ":) ";
+char *prompt = "#cisfun$ ";
 _printf(prompt);
 }
