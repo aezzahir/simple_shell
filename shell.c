@@ -47,6 +47,7 @@ int main(int ac, char **argv)
 		execmd(tokens, argv_0);
 		for (i = 0; tokens[i]; i++)
 			free(tokens[i]);
+
 	}
 	free(tokens);
 	free(line_copy);
