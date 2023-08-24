@@ -6,19 +6,18 @@
  * main - main function
  * @ac: Arguments Number
  * @argv: Arguments Vector
- * Return: 0 if success
+ * Return: 0 if success, -1 on failure.
  */
-
 int main(int ac, char **argv)
 {
-	char *line = NULL, *line_copy = NULL, argv_0[100];
+	char *line = NULL;
 	char **tokens = NULL;
 	size_t linecap = 0;
 	ssize_t linelen;
 	const char *delim = " \n";
-	int number_of_tokens = 0, i, exit_status = 0;
-	(void)ac;
-	_strcpy(argv_0, argv[0]);
+	int i, cmd_status = 0;
+	(void)ac, (void)argv;
+
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
@@ -28,27 +27,37 @@ int main(int ac, char **argv)
 		{
 			if (isatty(STDIN_FILENO))
 				_printf("\n");
-			return (-1);
+			break;
 		}
 		if (_strchr(line, ';') != NULL)
-			exec_multiple_cmds(line, argv_0, delim);
-		line_copy = malloc(sizeof(char) * linelen);
-		if (!line_copy)
-			memory_allocation_error();
-		_strcpy(line_copy, line);
-		number_of_tokens = get_number_of_tokens(line, delim);
-		tokens = tokenize_input(line_copy, delim, number_of_tokens);
-		if (tokens[0] && _strcmp(tokens[0], "exit") == 0)
 		{
-			exit_status = exit_builtin(tokens);
-			return (exit_status);
+			exec_multiple_cmds(line, delim);
+			continue;
 		}
-		execmd(tokens, argv_0);
+		tokens = get_tokens(line, delim);
+		if (tokens[0])
+		{
+			if (_strcmp(tokens[0], "exit") == 0)
+			{
+				cmd_status = exit_builtin(tokens);
+				break;
+			}
+			else
+			{
+				cmd_status = execmd(tokens);
+			}
+		}
 		for (i = 0; tokens[i]; i++)
+		{
 			free(tokens[i]);
+			tokens[i] = NULL;
+		}
 		free(tokens);
-		free(line_copy);
+		tokens = NULL;
 	}
-	free(line_copy);
 	free(line);
+	line = NULL;
+	return (cmd_status);
 }
+
+

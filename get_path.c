@@ -1,12 +1,10 @@
 #include "main.h"
 
-
 /**
  * get_path - Retrieves the path of a command.
  * @command: The command name
  * Return: Pointer to the full path of the command, or NULL if not found
  */
-
 char *get_path(char *command)
 {
 	char *path, *path_copy, *path_token, *file_path;
@@ -16,8 +14,10 @@ char *get_path(char *command)
 	path = getenv("PATH");
 	if (path)
 	{
-		path_length = _strlen(path);
+		path_length = _strlen(path) + 1;
 		path_copy = malloc(sizeof(char) * path_length);
+		if (!path_copy)
+			return (NULL);
 		_strcpy(path_copy, path);
 		command_length = _strlen(command);
 		path_token = strtok(path_copy, ":");
@@ -25,6 +25,11 @@ char *get_path(char *command)
 		{
 			directory_length = _strlen(path_token);
 			file_path = malloc(command_length + directory_length + 2);
+			if (!file_path)
+			{
+				free(path_copy);
+				return (NULL);
+			}
 			_strcpy(file_path, path_token);
 			_strcat(file_path, "/");
 			_strcat(file_path, command);
@@ -34,19 +39,13 @@ char *get_path(char *command)
 				free(path_copy);
 				return (file_path);
 			}
-			else
-			{
-				free(file_path);
-				path_token = strtok(NULL, ":");
-			}
+			free(file_path);
+			path_token = strtok(NULL, ":");
 		}
 		free(path_copy);
 		if (stat(command, &buffer) == 0)
-		{
-			free(file_path);
-			return (command);
-		}
-		return (NULL);
+			return (strdup(command));
 	}
 	return (NULL);
 }
+
