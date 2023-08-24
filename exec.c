@@ -24,7 +24,7 @@ void execmd(char **argv, char *argv_0)
 			_printf(": No such file or directory\n");
 		}
 		else
-			error_msg();
+			error_msg(command, argv_0);
 		return;
 	}
 	pid = fork();
@@ -90,10 +90,12 @@ void exec_multiple_cmds(char *line, char *argv_0, const char *delim)
 
 /**
  * error_msg - print error message.
+ * @command: commad to be executed
+ * @argv_0: prgram's name
  * Return: void
  */
 
-void error_msg(void)
+void error_msg(char *command, char *argv_0)
 {
 	_printf(argv_0);
 	_printf(": 1: ");
