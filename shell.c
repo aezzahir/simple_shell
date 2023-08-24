@@ -7,7 +7,7 @@
  * @ac: Arguments Number
  * @argv: Arguments Vector
  * Return: 0 if success
-*/
+ */
 
 int main(int ac, char **argv)
 {
@@ -17,7 +17,7 @@ int main(int ac, char **argv)
 	ssize_t linelen;
 	const char *delim = " \n";
 	int number_of_tokens = 0;
-	int i, exit_status;
+	int i, exit_status = 0;
 	(void)ac;
 	_strcpy(argv_0, argv[0]);
 	while (1)
@@ -47,6 +47,9 @@ int main(int ac, char **argv)
 		execmd(tokens, argv_0);
 		for (i = 0; tokens[i]; i++)
 			free(tokens[i]);
+		free(tokens);
+		free(line_copy);
+		free(line);
 	}
 	free(tokens);
 	free(line_copy);

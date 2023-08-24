@@ -10,6 +10,7 @@ int get_number_of_tokens(char *command, const char *delim)
 {
 	int number_of_tokens = 0;
 	char *a_token;
+
 	a_token = _strtok(command, delim);
 	while (a_token != NULL)
 	{
@@ -28,24 +29,30 @@ int get_number_of_tokens(char *command, const char *delim)
  */
 char **tokenize_input(char *line_copy, const char *delim, int number_of_tokens)
 {
-	char **tokens = malloc(sizeof(char *) * number_of_tokens);
-	int i;
+	char **tokens = malloc(sizeof(char *) * (number_of_tokens + 1));
+	int i, j;
 	char *a_token;
+
 	if (!tokens)
 	{
 		return (NULL);
 	}
+
 	a_token = _strtok(line_copy, delim);
-	for (i = 0; a_token != NULL; i++)
+	for (i = 0; a_token != NULL && i < number_of_tokens; i++)
 	{
 		tokens[i] = malloc(sizeof(char) * (strlen(a_token) + 1));
 		if (!tokens[i])
 		{
+			for (j = 0; j < i; j++)
+				free(tokens[j]);
+			free(tokens);
 			memory_allocation_error();
 		}
 		_strcpy(tokens[i], a_token);
 		a_token = _strtok(NULL, delim);
 	}
+
 	tokens[i] = NULL;
 	return (tokens);
 }
