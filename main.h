@@ -25,7 +25,7 @@ int _strcmp(char *s1, char *s2);
 int _atoi(char *s);
 void *_memcpy(void *dest, const void *src, size_t n);
 char *_strchr(char *s, char c);
-
+ void error_msg(void);
 
 /* Shell functions */
 void prompt(void);
