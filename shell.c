@@ -16,8 +16,7 @@ int main(int ac, char **argv)
 	size_t linecap = 0;
 	ssize_t linelen;
 	const char *delim = " \n";
-	int number_of_tokens = 0;
-	int i, exit_status = 0;
+	int number_of_tokens = 0, i, exit_status = 0;
 	(void)ac;
 	_strcpy(argv_0, argv[0]);
 	while (1)
@@ -49,9 +48,7 @@ int main(int ac, char **argv)
 			free(tokens[i]);
 		free(tokens);
 		free(line_copy);
-		free(line);
 	}
-	free(tokens);
 	free(line_copy);
 	free(line);
 }
