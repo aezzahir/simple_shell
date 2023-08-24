@@ -5,7 +5,6 @@
  * @argv: Array of command arguments
  * @argv_0: Name of the shell program
  */
-
 void execmd(char **argv, char *argv_0)
 {
 	char *command = NULL, *full_command = NULL;
@@ -23,7 +22,6 @@ void execmd(char **argv, char *argv_0)
 			_printf(": No such file or directory\n");
 		else
 		{
-			_printf(": 1: ");
 			_printf(command);
 			_printf(": not found\n");
 		}
@@ -33,10 +31,13 @@ void execmd(char **argv, char *argv_0)
 	if (pid == 0)
 	{
 		if (execve(full_command, argv, NULL) == -1)
+		{
+			free(full_command);
 			exit(EXIT_FAILURE);
+		}
 	}
 	else if (pid < 0)
-		perror("tsh");
+		perror(argv_0);
 	else
 	{
 		do {
@@ -45,6 +46,7 @@ void execmd(char **argv, char *argv_0)
 	}
 	if (_strcmp(command, "env") == 0)
 		print_environment();
+	free(full_command);
 }
 
 /**
