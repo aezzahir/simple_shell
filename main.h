@@ -15,7 +15,6 @@
 /* External variables */
 extern char **environ;
 
-
 /* Utilities functions */
 int _printf(const char *str);
 char *_strcpy(char *dest, char *src);
@@ -28,16 +27,16 @@ char *_strchr(char *s, char c);
 
 /* Shell functions */
 void prompt(void);
-int execmd(char **argv);
+int execmd(char **argv, char *shell_name);
 char *get_path(char *command);
 void print_environment(void);
 int exit_builtin(char **tokens);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
-void exec_multiple_cmds(char *line, const char *delim);
+void exec_multiple_cmds(char *line, const char *delim, char *shell_name);
 char *_strtok(char *str, const char *delim);
 /* Split command utility functions */
 char **get_tokens(char *line_copy, const char *delim);
 int memory_allocation_error(void);
-
+void print_error(char *command, char *full_command);
 
 #endif /* _MAIN_H */

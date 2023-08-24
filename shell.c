@@ -10,14 +10,18 @@
  */
 int main(int ac, char **argv)
 {
-	char *line = NULL;
+	char *line = NULL, *shell_name = NULL;
 	char **tokens = NULL;
 	size_t linecap = 0;
 	ssize_t linelen;
 	const char *delim = " \n";
 	int i, cmd_status = 0;
-	(void)ac, (void)argv;
+	(void)ac;
 
+	shell_name = malloc(_strlen(argv[0]) + 1);
+	if (shell_name == NULL)
+		exit(EXIT_FAILURE);
+	_strcpy(shell_name, argv[0]);
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
@@ -31,7 +35,7 @@ int main(int ac, char **argv)
 		}
 		if (_strchr(line, ';') != NULL)
 		{
-			exec_multiple_cmds(line, delim);
+			exec_multiple_cmds(line, delim, shell_name);
 			continue;
 		}
 		tokens = get_tokens(line, delim);
@@ -44,7 +48,7 @@ int main(int ac, char **argv)
 			}
 			else
 			{
-				cmd_status = execmd(tokens);
+				cmd_status = execmd(tokens, shell_name);
 			}
 		}
 		for (i = 0; tokens[i]; i++)
@@ -56,6 +60,8 @@ int main(int ac, char **argv)
 		tokens = NULL;
 	}
 	free(line);
+	free(shell_name);
+	shell_name = NULL;
 	line = NULL;
 	return (cmd_status);
 }
