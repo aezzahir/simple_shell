@@ -15,7 +15,7 @@ char *setup_shell_name(char *arg)
 		exit(EXIT_FAILURE);
 	_strcpy(shell_name, arg);
 
-	return shell_name;
+	return (shell_name);
 }
 /**
  * process_command - Process the command input.
