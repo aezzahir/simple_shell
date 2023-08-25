@@ -41,6 +41,7 @@ void process_command(char *line, const char *delim, char *shell_name)
 			exit_builtin(tokens);
 			return;
 		}
+
 		execmd(tokens, shell_name);
 	}
 	for (i = 0; tokens[i]; i++)

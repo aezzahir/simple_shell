@@ -50,7 +50,6 @@ int execmd(char **argv, char *shell_name)
 		if (execve(full_command, argv, NULL) == -1)
 		{
 			free(full_command);
-			perror("Error: Execution failed");
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -65,6 +64,7 @@ int execmd(char **argv, char *shell_name)
 		do {
 			waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		return (WEXITSTATUS(status));
 	}
 	if (_strcmp(command, "env") == 0)
 		print_environment();

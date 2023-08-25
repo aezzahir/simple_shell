@@ -30,7 +30,7 @@ void prompt(void);
 int execmd(char **argv, char *shell_name);
 char *get_path(char *command);
 void print_environment(void);
-int exit_builtin(char **tokens);
+void exit_builtin(char **tokens);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 void exec_multiple_cmds(char *line, const char *delim, char *shell_name);
 char *_strtok(char *str, const char *delim);
