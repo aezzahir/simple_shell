@@ -28,6 +28,7 @@ void print_error(char *command, char *full_command)
  * @shell_name: shell_name
  * Return: -1 on fork error, -100 if command path not found, or 0 on success.
  */
+
 int execmd(char **argv, char *shell_name)
 {
 	char *command = NULL, *full_command = NULL;
@@ -42,6 +43,7 @@ int execmd(char **argv, char *shell_name)
 	{
 		write(STDERR_FILENO, shell_name, _strlen(shell_name));
 		print_error(command, full_command);
+		free(full_command);
 		return (0);
 	}
 	pid = fork();
@@ -50,13 +52,12 @@ int execmd(char **argv, char *shell_name)
 		if (execve(full_command, argv, NULL) == -1)
 		{
 			free(full_command);
-			exit(EXIT_FAILURE);
+			return (0);
 		}
 	}
 	else if (pid < 0)
 	{
 		free(full_command);
-		perror("Error: Fork failed");
 		return (0);
 	}
 	else
@@ -64,11 +65,11 @@ int execmd(char **argv, char *shell_name)
 		do {
 			waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		free(full_command);
 		return (WEXITSTATUS(status));
 	}
 	if (_strcmp(command, "env") == 0)
 		print_environment();
-	free(full_command);
 	return (0);
 }
 

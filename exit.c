@@ -1,18 +1,26 @@
 #include "main.h"
 
-
 /**
  * exit_builtin - Implementation of the "exit" built-in command
  * @tokens: Array of tokens from the user input
  * Return: 0 if the shell should exit, -1 on error
  */
-void exit_builtin(char **tokens)
+int exit_builtin(char **tokens)
 {
-	if (tokens[1])
+	int exit_status;
+
+	if (tokens[1] == NULL)
 	{
-		int status = atoi(tokens[1]);
-		exit(status);
+		return (0);
 	}
-	exit(0);
+	else if (tokens[2] != NULL)
+	{
+		_printf("Error: too many arguments\n");
+		return (-1);
+	}
+
+	exit_status = _atoi(tokens[1]);
+	return (exit_status);
 }
+
 

@@ -1,69 +1,65 @@
 #include "main.h"
 
 #define BUFFER_SIZE 1024
-
 /**
- * setup_shell_name - Set up the shell name.
- * @arg: Argument for shell name.
- * Return: shell name.
+ * exit_cmd - handle exit command
+ * @tokens: command line tokens
+ * @shell_name: shell name
+ * Return: cmd status
  */
-char *setup_shell_name(char *arg)
+
+int exit_cmd(char **tokens, char *shell_name)
 {
-	char *shell_name = malloc(_strlen(arg) + 1);
+	int cmd_status = 0;
 
-	if (!shell_name)
-		exit(EXIT_FAILURE);
-	_strcpy(shell_name, arg);
-
-	return (shell_name);
-}
-/**
- * process_command - Process the command input.
- * @line: The input line.
- * @delim: Delimiter for tokenization.
- * @shell_name: Name of the shell.
- */
-void process_command(char *line, const char *delim, char *shell_name)
-{
-	char **tokens = NULL;
-	int i;
-
-	if (_strchr(line, ';'))
-	{
-		exec_multiple_cmds(line, delim, shell_name);
-		return;
-	}
-	tokens = get_tokens(line, delim);
 	if (tokens[0])
 	{
-		if (!_strcmp(tokens[0], "exit"))
+		if (_strcmp(tokens[0], "exit") == 0)
 		{
-			exit_builtin(tokens);
-			return;
+			cmd_status = exit_builtin(tokens);
 		}
-
-		execmd(tokens, shell_name);
+		else
+		{
+			cmd_status = execmd(tokens, shell_name);
+		}
 	}
-	for (i = 0; tokens[i]; i++)
-	{
-		free(tokens[i]);
-		tokens[i] = NULL;
-	}
-	free(tokens);
+	return (cmd_status);
 }
 
 /**
- * command_loop - The main loop to get command input.
- * @shell_name: The name of the shell.
+ * _free - free function
+ * @line: line command
+ * @shell_name: shell name
  */
-void command_loop(char *shell_name)
+void _free(char *shell_name, char *line)
 {
-	char *line = NULL;
+	free(line);
+	free(shell_name);
+	shell_name = NULL;
+	line = NULL;
+}
+/**
+ *  * main - main function
+ *   * @ac: Arguments Number
+ *    * @argv: Arguments Vector
+ *     * Return: 0 if success, -1 on failure.
+ */
+
+int main(int ac, char **argv)
+{
+	char *line = NULL, *shell_name = NULL;
+	char **tokens = NULL;
 	size_t linecap = 0;
 	ssize_t linelen;
 	const char *delim = " \n";
+	int i, cmd_status = 0;
+	(void)ac;
 
-	while (1)
+	shell_name = malloc(_strlen(argv[0]) + 1);
+	if (shell_name == NULL)
+		return (0);
+	_strcpy(shell_name, argv[0]);
+	while (cmd_status == 0)
 	{
 		if (isatty(STDIN_FILENO))
 			prompt();
@@ -74,26 +70,22 @@ void command_loop(char *shell_name)
 				_printf("\n");
 			break;
 		}
-		process_command(line, delim, shell_name);
+		if (_strchr(line, ';') != NULL)
+		{
+			exec_multiple_cmds(line, delim, shell_name);
+			continue;
+		}
+		tokens = get_tokens(line, delim);
+		cmd_status = exit_cmd(tokens, shell_name);
+		for (i = 0; tokens[i]; i++)
+		{
+			free(tokens[i]);
+			tokens[i] = NULL;
+		}
+		free(tokens);
+		tokens = NULL;
 	}
-	free(line);
-}
-
-/**
- * main - Entry point of the program.
- * @ac: Number of command-line arguments.
- * @argv: Array of command-line arguments.
- * Return: 0 on success, or other status on failure.
- */
-int main(int ac, char **argv)
-{
-	char *shell_name = NULL;
-	int cmd_status = 0;
-
-	(void)ac;
-	shell_name = setup_shell_name(argv[0]);
-	command_loop(shell_name);
-	free(shell_name);
+	_free(line, shell_name);
 	return (cmd_status);
 }
 

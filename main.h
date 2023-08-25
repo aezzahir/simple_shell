@@ -22,6 +22,7 @@ char *_strcat(char *dest, char *src);
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 int _atoi(char *s);
+char *_strdup(char *str);
 void *_memcpy(void *dest, const void *src, size_t n);
 char *_strchr(char *s, char c);
 
@@ -30,7 +31,7 @@ void prompt(void);
 int execmd(char **argv, char *shell_name);
 char *get_path(char *command);
 void print_environment(void);
-void exit_builtin(char **tokens);
+int exit_builtin(char **tokens);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 void exec_multiple_cmds(char *line, const char *delim, char *shell_name);
 char *_strtok(char *str, const char *delim);
