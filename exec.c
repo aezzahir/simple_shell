@@ -63,7 +63,6 @@ int execmd(char **argv, char *shell_name)
 	if (_strcmp(command, "env") == 0)
 	{
 		print_environment();
-		return (0);
 	}
 	pid = fork();
 	if (pid == 0)
