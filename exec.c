@@ -1,4 +1,19 @@
 #include "main.h"
+
+/**
+ * free_full_path - free full path
+ * @full_command: command
+ * Return: 0
+ */
+
+int free_full_path(char *full_command)
+{
+	free(full_command);
+	full_command = NULL;
+	return (0);
+
+}
+
 /**
  * print_error - Print the error message to stderr.
  * @command: The failing command name.
@@ -43,23 +58,21 @@ int execmd(char **argv, char *shell_name)
 	{
 		write(STDERR_FILENO, shell_name, _strlen(shell_name));
 		print_error(command, full_command);
-		free(full_command);
-		return (0);
+		free_full_path(full_command);
+	}
+	if (_strcmp(command, "env") == 0)
+	{
+		print_environment();
+		free_full_path(full_command);
 	}
 	pid = fork();
 	if (pid == 0)
 	{
 		if (execve(full_command, argv, NULL) == -1)
-		{
-			free(full_command);
-			return (0);
-		}
+			free_full_path(full_command);
 	}
 	else if (pid < 0)
-	{
-		free(full_command);
-		return (0);
-	}
+		free_full_path(full_command);
 	else
 	{
 		do {
@@ -68,8 +81,6 @@ int execmd(char **argv, char *shell_name)
 		free(full_command);
 		return (WEXITSTATUS(status));
 	}
-	if (_strcmp(command, "env") == 0)
-		print_environment();
 	return (0);
 }
 

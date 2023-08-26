@@ -7,12 +7,12 @@
 
 void print_environment(void)
 {
-int i = 0;
+	int i = 0;
 
-while (environ[i] != NULL)
-{
-_printf(environ[i]);
-_printf("\n");
-i++;
-}
+	while (environ[i] != NULL)
+	{
+		_printf(environ[i]);
+		_printf("\n");
+		i++;
+	}
 }

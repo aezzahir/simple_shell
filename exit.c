@@ -7,11 +7,11 @@
  */
 int exit_builtin(char **tokens)
 {
-	int exit_status;
+	int exit_status = 0;
 
 	if (tokens[1] == NULL)
 	{
-		return (0);
+		return (-1);
 	}
 	else if (tokens[2] != NULL)
 	{
