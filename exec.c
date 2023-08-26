@@ -63,12 +63,13 @@ int execmd(char **argv, char *shell_name)
 	if (_strcmp(command, "env") == 0)
 	{
 		print_environment();
+		return (0);
 	}
 	pid = fork();
 	if (pid == 0)
 	{
 		if (execve(full_command, argv, NULL) == -1)
-			return (-1);
+			return (0);
 	}
 	else if (pid < 0)
 		free_full_path(full_command);

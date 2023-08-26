@@ -11,15 +11,17 @@ int exit_builtin(char **tokens)
 
 	if (tokens[1] == NULL)
 	{
-		return (-1);
+		return (exit_status);
 	}
 	else if (tokens[2] != NULL)
 	{
 		_printf("Error: too many arguments\n");
 		return (-1);
 	}
-
-	exit_status = _atoi(tokens[1]);
+	else
+	{
+		exit_status = _atoi(tokens[1]);
+	}
 	return (exit_status);
 }
 
